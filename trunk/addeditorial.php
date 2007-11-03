@@ -22,7 +22,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+is_online();
 // insert a editorial
 if($_POST['submit']=='agregar editorial'){
 	
@@ -30,7 +30,7 @@ if($_POST['submit']=='agregar editorial'){
 	$result = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>La editorial se agrego con exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La editorial se agrego con exito !!!</td></tr>\n";
 		echo "            </table>\n";
 	
 }
@@ -43,7 +43,7 @@ if($_POST['submit']=='actualizar editorial'){
 		
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>ERROR: Datos de la editorial incorrectos</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>ERROR: Datos de la editorial incorrectos</td></tr>\n";
 		echo "            </table>\n";
 		
 	}else {
@@ -52,7 +52,7 @@ if($_POST['submit']=='actualizar editorial'){
 		$res = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>La editorial se actualizo con exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La editorial se actualizo con exito !!!</td></tr>\n";
 		echo "            </table>\n";
 	}
 	
@@ -75,7 +75,7 @@ echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3
 echo "              <tr><td height=15></td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='70' maxlength='290' name='nombre' value='".$info['nombre']."'>&nbsp;*</td></tr>\n";
 
 echo "            </table>\n";
@@ -109,7 +109,7 @@ echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3
 echo "              <tr><td height=15></td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='70' maxlength='290' name='nombre'>&nbsp;*</td></tr>\n";
 
 echo "            </table>\n";

@@ -5,7 +5,6 @@
 */
 session_start();
 
-
 if (!isset($_SESSION['admin_user'])) {
 
 echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
@@ -17,7 +16,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+is_online();
 // se envio una busqueda
 
 if(isset($_POST['submit']) && $_POST['submit']=='buscar'){
@@ -102,7 +101,7 @@ echo "<link rel='stylesheet' type='text/css' media='screen' href='css/default.cs
 			if(mysql_num_rows($result)<=0){ // error no hay resultados
 				
 				echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-				echo "              <tr><td class=table_rows align=center colspan=3 style='color:blue;font-family:Tahoma;font-size:12px;'>No se encontro ningun libro con esas caracteristicas</td></tr>\n";
+				echo "              <tr><td class=table_rows align=center colspan=3 style='color:blue;font-family:Arial;font-size:12px;'>No se encontro ningun libro con esas caracteristicas</td></tr>\n";
 				echo "            </table>\n";
 				$error = 1;
 			} else { // si hay resultados
@@ -187,16 +186,16 @@ echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3
 echo "              <tr><td height=15></td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Titulo:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='titulo'>&nbsp;*</td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Persona:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='autor'>&nbsp;*</td></tr>\n";
 $sql = "SELECT * FROM materias";
 $res = mysql_query($sql);
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Materia:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>";
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'>";
 echo "<SELECT NAME='materia' onchange='palabras_names();'>";
 echo "<OPTION VALUE='Todas'>Todas</OPTION>";
 while ($mat = mysql_fetch_array($res)){
@@ -206,11 +205,11 @@ echo "                <OPTION VALUE='".$mat['id']."'>".$mat['nombre']."</OPTION>
 echo "</td></tr></SELECT>";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Palabras Clave:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>";
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'>";
 echo "<SELECT NAME='palabras'>";
 echo "</td></tr></SELECT>";
 
-echo "<tr><td colspan=3 align=center width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+echo "<tr><td colspan=3 align=center width=80% style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'>
 * No usar acentos en las busquedas
 </td></tr>";
 

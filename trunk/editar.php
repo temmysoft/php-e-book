@@ -23,7 +23,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+is_online();
 // se envio una busqueda
 
 if(isset($_POST['id'])){
@@ -41,11 +41,11 @@ if(isset($idlibro)){
 	
 	echo "<table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
 	echo "	<tr>
-   				<td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'>
+   				<td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'>
    					<a href='editarlibro.php?id=".$idlibro."'>Editar Datos Generales</a></td></tr>
-   					<tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'>
+   					<tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'>
    						<a href='libropersonas.php?id=".$idlibro."'>Editar Personas</a></td></tr>
-   					<tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'>
+   					<tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'>
    					<a href='libromaterias.php?id=".$idlibro."'>Editar Materias</a>
    				</td>
    			</tr>\n";

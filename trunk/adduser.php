@@ -20,7 +20,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+is_online();
 // borrar usuario
 
 if($_POST['submit']=='borrar usuario'){
@@ -29,7 +29,7 @@ if($_POST['submit']=='borrar usuario'){
 	$res = mysql_query($sql);
 	echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>El Usuario se borro con Exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>El Usuario se borro con Exito !!!</td></tr>\n";
 		echo "            </table>\n";
 }
 
@@ -43,7 +43,7 @@ if($_POST['submit']=='cambiar'){
 	if($_POST['password']!=$_POST['confirm_pass']){
 		echo "<BR>";
 		echo "            <table align=center class=table_bselect * from usersorder width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>Los Passwords no coinciden. Favor de Verificar !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>Los Passwords no coinciden. Favor de Verificar !!!</td></tr>\n";
 		echo "            </table>\n";
 		if(isset($_POST['admin'])){
 			$_POST['admin'] =1;
@@ -72,7 +72,7 @@ if($_POST['submit']=='cambiar'){
 		$res = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>El Usuario se Actulizo con Exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>El Usuario se Actulizo con Exito !!!</td></tr>\n";
 		echo "            </table>\n";
 		
 	}
@@ -92,7 +92,7 @@ if($_POST['submit']=='editar usuario'){
 		
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>Usuario Invalido !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>Usuario Invalido !!!</td></tr>\n";
 		echo "            </table>\n";
 		$error = 1;
 		
@@ -111,50 +111,50 @@ if($_POST['submit']=='editar usuario'){
 	echo "              <tr><td height=15></td></tr>\n";
 
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
-                      size='30' maxlength='31' name='nombre' value='".$user['nombre']."'>&nbsp;*</td></tr>\n";
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
+                      size='30' maxlength='80' name='nombre' value='".$user['nombre']."'>&nbsp;*</td></tr>\n";
 
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
-                      size='30' maxlength='31' name='user' value='".$user['user']."'>&nbsp;*</td></tr>\n";
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
+                      size='30' maxlength='49' name='user' value='".$user['user']."'>&nbsp;*</td></tr>\n";
 
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Password:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='password' 
-                      size='30' maxlength='31' name='password'>&nbsp;*</td></tr>\n";
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='password' 
+                      size='30' maxlength='49' name='password'>&nbsp;*</td></tr>\n";
 
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar Password:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='password' 
-                      size='30' maxlength='31' name='confirm_pass'>&nbsp;*</td></tr>\n";
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='password' 
+                      size='30' maxlength='49' name='confirm_pass'>&nbsp;*</td></tr>\n";
 
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Fecha Inicio:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='fecha_inicio' value='".$user['inicio']."'>&nbsp;*</td></tr>\n";
 	
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Fecha Termino:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='fecha_fin' value='".$user['fin']."'>&nbsp;*</td></tr>\n";
 
 	if($user['admin']==1){
-	echo "              <td style='font-family:Tahoma;font-size:13px;'>
+	echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='admin' CHECKED>Administrador</td>\n";
 	}else {
-		echo "              <td style='font-family:Tahoma;font-size:13px;'>
+		echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='admin'>Administrador</td>\n";
 	}
 
 	if($user['capturista']==1){
-	echo "              <td style='font-family:Tahoma;font-size:13px;'>
+	echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='captur' CHECKED>Capturista</td>\n";
 	}else{
-		echo "              <td style='font-family:Tahoma;font-size:13px;'>
+		echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='captur'>Capturista</td>\n";
 	}
 
 	if($user['lector']==1){
-	echo "              <td style='font-family:Tahoma;font-size:13px;'>
+	echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='lector' CHECKED>Lector</td>\n";
 	}else {
-		echo "              <td style='font-family:Tahoma;font-size:13px;'>
+		echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='lector'>Lector</td>\n";
 	}
 
@@ -186,7 +186,7 @@ if($_POST['submit']=='agregar usuario'){
 	if(empty($_POST['user'])){
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>Usuario Invalido !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>Usuario Invalido !!!</td></tr>\n";
 		echo "            </table>\n";
 		$error = 1;
 	}
@@ -194,7 +194,7 @@ if($_POST['submit']=='agregar usuario'){
 	if(empty($pass) || empty($confpass)){
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>Verifique su Password !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>Verifique su Password !!!</td></tr>\n";
 		echo "            </table>\n";
 		$error = 1;
 	}
@@ -203,7 +203,7 @@ if($_POST['submit']=='agregar usuario'){
 		
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>Los Password no coinciden, intente de nuevo !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>Los Password no coinciden, intente de nuevo !!!</td></tr>\n";
 		echo "            </table>\n";
 		$error = 1;
 		
@@ -216,7 +216,7 @@ if($_POST['submit']=='agregar usuario'){
 		if($users['user']==$user){
 			echo "<BR>";
 			echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-			echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>El Usuario Ya Existe !!!</td></tr>\n";
+			echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>El Usuario Ya Existe !!!</td></tr>\n";
 			echo "            </table>\n";
 			$error = 1;
 		}
@@ -252,7 +252,7 @@ if($_POST['submit']=='agregar usuario'){
 		$res = mysql_query($sql);
 		echo "<BR>";
 			echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-			echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>El Usuario Se Agrego Con Exito !!!</td></tr>\n";
+			echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>El Usuario Se Agrego Con Exito !!!</td></tr>\n";
 			echo "            </table>\n";
 			unset($_POST['nombre']);
 			unset($_POST['user']);
@@ -285,36 +285,36 @@ echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3
 echo "              <tr><td height=15></td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='nombre' value='".$_POST['nombre']."'>&nbsp;*</td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='user' value='".$_POST['user']."'>&nbsp;*</td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Password:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='password' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='password' 
                       size='30' maxlength='31' name='password'>&nbsp;*</td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Comfirmar Password:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='password' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='password' 
                       size='30' maxlength='31' name='confirm_pass'>&nbsp;*</td></tr>\n";
 
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Fecha Inicio:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='fecha_inicio' value='".date("Y-m-d")."'>&nbsp;*</td></tr>\n";
 	
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Fecha Termino:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='fecha_fin'>&nbsp;*</td></tr>\n";
 
-echo "              <td style='font-family:Tahoma;font-size:13px;'>
+echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='admin'>Administrador</td>\n";
 
-echo "              <td style='font-family:Tahoma;font-size:13px;'>
+echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='captur'>Capturista</td>\n";
 
-echo "              <td style='font-family:Tahoma;font-size:13px;'>
+echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='lector'>Lector</td>\n";
 
 echo "            </table>\n";

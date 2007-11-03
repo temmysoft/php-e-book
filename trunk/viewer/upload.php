@@ -10,7 +10,7 @@ echo "  <tr class=right_main_text>\n";
 echo "    <td align=center valign=top scope=row>\n";
 echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
 echo "        <tr class=right_main_text><td align=center>No estas registado<br>o<br>No tienes permiso de acceder a esta pagina.</td></tr>\n";
-echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
+echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='../login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
 
@@ -58,17 +58,26 @@ $_SESSION['imgid'] = '/tmp/';
 //$_SESSION['imgid'] = $libros_dir.$_SESSION['id']."/";
 $_SESSION['docid'] = $libros_dir.$_SESSION['id']."/";
 //<frame src="footer.php">
+
 ?>
 <html>
+<?php /*
 <frameset cols="1*,100">
 	<frame name=downtarget src="view.php?p=1&z1=1">	
 </framset>
-<frameset rows="1*, 100">
+<frameset rows="50, 50">
 <frameset>
-	
+		
 	<frame src="header.php">
-	<frame src="footer.php">
+	<frame src="footer.php">	
 	
 </frameset>
 
+//<frame src="header.php">
+*/?>
+<frameset cols="90,10">
+	<frame name=downtarget src="view.php?p=1&z1=1">
+	
+	<frame name=menu src="footer.php">
+</frameset>
 </html>

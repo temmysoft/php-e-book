@@ -1,6 +1,26 @@
 <?php session_start(); ?>
 <html>
-<body onload="mainform = document.mainform; p = mainform.p; z1 = mainform.z1; z2 = mainform.z2">
+<HEAD>
+<SCRIPT LANGUAGE="JScript">
+var id;
+function StartGlide()javascript:selectAll('form.s1')
+{
+    Banner.style.pixelLeft = 
+    document.body.offsetWidth;
+    Banner.style.visibility = "visible";
+    id = window.setInterval("Glide()",50);
+}
+function Glide()
+{
+    Banner.style.pixelLeft -= 10;
+    if (Banner.style.pixelLeft<=0) {
+        Banner.style.pixelLeft=0;
+        window.clearInterval(id);
+    }
+}
+</SCRIPT>
+</HEAD>
+<body onload="mainform = document.mainform; p = mainform.p; z1 = mainform.z1; z2 = mainform.z2;">
 
 <script language=javascript>
 	function previouspage()
@@ -18,6 +38,7 @@
 			p.value++;
 			mainform.submit();
 		}
+		
 	}
 	function setpage(pg)
 	{
@@ -46,11 +67,12 @@
 			z2.value = z1.value;
 		}
 	}
+	
 </script>
 
 <form name=mainform action=view.php method=get target=downtarget>
-	<input type=hidden name="p" value=1>
-	<input type=hidden name="z1" value=1>
+	<input type=hidden name="p" value=<?= $_SESSION['pageid'] ?>>
+	<input type=hidden name="z1" value=<?= $_SESSION['zoom'] ?>>
 	<input type=hidden name="z2" value=1>
 </form>
 <a href="javascript:zoomin()"><img src='../images/icons/magnifier+.png' border=0></a><br><?php // Agrandar ?>
@@ -60,12 +82,13 @@
 <a href="javascript:nextpage();"><img src='../images/icons/arrow_right.png' border=0></a><br> <?php // Siguiente ?>
 
 <?php
-
+/*
 	for ($i = 1; $i <= $_SESSION['Pages']; $i++)
 		echo "<a href='javascript:setpage($i);'>P. $i</a><br>"
-
+	
+		*/
 ?>
-<a href="javascript:nextpage();"><img src='../images/icons/arrow_right.png' border=0></a><br> <?php // Siguiente ?>
+<?php // <a href="javascript:nextpage();"><img src='../images/icons/arrow_right.png' border=0></a><br> <?php // Siguiente ?> 
 </body>
 </html>
 

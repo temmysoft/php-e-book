@@ -23,12 +23,12 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+is_online();
 if(!isset($_GET['id'])){
 	
 	echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>ERROR: No se envio ningun libro</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>ERROR: No se envio ningun libro</td></tr>\n";
 		echo "            </table>\n";
 	
 }else {
@@ -41,7 +41,7 @@ if(!isset($_GET['id'])){
 
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=90% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'>".$titulo['titulo']." - ".$titulo['edicion']." - ".$titulo['nombre']."</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'>".$titulo['titulo']." - ".$titulo['edicion']." - ".$titulo['nombre']."</td></tr>\n";
 	
 		$sql = "SELECT libros.id, libros.titulo, personas.id AS idpersona, personas.nombres, personas.apellido_pat, personas.apellido_mat, categorias.nombre
 				FROM libros, personas, categorias, libros_personas WHERE libros.id='".$_GET['id']."'
@@ -52,9 +52,9 @@ if(!isset($_GET['id'])){
 		$res = mysql_query($sql);
 		while($libro = mysql_fetch_array($res)){
 			if(isset($_SESSION['admin_user'])){
-				echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'><strong>".$libro['nombre'].":</strong> ".$libro['apellido_pat']." ".$libro['apellido_mat']." ".$libro['nombres'].'&nbsp;&nbsp;<a href=rempersona.php?id='.$libro['id'].'&per='.$libro['idpersona'].' onclick="return confirm(\'' . _('Estas Seguro?') . '\');">[eliminar]</a></td></tr>';
+				echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'><strong>".$libro['nombre'].":</strong> ".$libro['apellido_pat']." ".$libro['apellido_mat']." ".$libro['nombres'].'&nbsp;&nbsp;<a href=rempersona.php?id='.$libro['id'].'&per='.$libro['idpersona'].' onclick="return confirm(\'' . _('Estas Seguro?') . '\');">[eliminar]</a></td></tr>';
 			}else {
-				echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'><strong>".$libro['nombre'].":</strong> ".$libro['apellido_pat']." ".$libro['apellido_mat']." ".$libro['nombres']."</td></tr>\n";
+				echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'><strong>".$libro['nombre'].":</strong> ".$libro['apellido_pat']." ".$libro['apellido_mat']." ".$libro['nombres']."</td></tr>\n";
 			}
 		}
 		echo "            </table>\n";

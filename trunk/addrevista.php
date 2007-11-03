@@ -8,8 +8,8 @@ session_start();
 include ('header.php');
 //include ('leftmain.php');
 
-echo "<title>$title - Agregar Categoria</title>\n";
-$current_page = "addcategoria.php";
+echo "<title>$title - Agregar Revista</title>\n";
+$current_page = "addrevista.php";
 
 if (!isset($_SESSION['admin_user'])) {
 
@@ -23,139 +23,127 @@ echo "        <tr class=right_main_text><td align=center>Click <a class=admin_he
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
 is_online();
-// insert a categorias
-if($_POST['submit']=='agregar categoria'){
-	if(strlen($_POST['nombre'])>1){
-	$sql = "INSERT INTO categorias (nombre) VALUES ('".$_POST['nombre']."')";
-	$result = mysql_query($sql);
-		echo "<BR>";
-		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La Categoria se agrego con exito !!!</td></tr>\n";
-		echo "            </table>\n";
-	}
-}
-// fin insert a categorias
-
-
-if($_POST['submit']=='aplicar cambios'){
-	if(strlen($_POST['nombre'])>1){
+// insert a revistas
+if($_POST['submit']=='agregar revista'){
 	
-		$sql = "SELECT * FROM categorias WHERE nombre = '".$_POST['nombre']."'";
-		$res = mysql_query($sql);
-		if(mysql_num_rows($res)>0){
-			echo "<BR>";
-		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>ERROR: La categoria ya existe !!!</td></tr>\n";
-		echo "            </table>\n";
-		}else {
-		$sql = "UPDATE categorias SET nombre = '".$_POST['nombre']."' WHERE id='".$_POST['id']."'";
-		$result = mysql_query($sql);
-		echo "<BR>";
-		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La categoria se edito con exito !!!</td></tr>\n";
-		echo "            </table>\n";
-		}
-	}
-}
-
-if($_POST['submit']=='editar'){
-$sql = "SELECT * FROM categorias WHERE id='".$_POST['id']."'";
-$res = mysql_query($sql);
-$pais = mysql_fetch_array($res);
-echo "            <br />\n";
-echo "            <form name='libro' action='$current_page' method='post'>\n";
-echo "				<input type=hidden name='id' value='".$pais['id']."'>";
-echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
-                      <img src='images/icons/user_green.png' />&nbsp;&nbsp;&nbsp;Editar Categoria</th></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
-                      size='30' maxlength='31' name='nombre' value='".$pais['nombre']."'>&nbsp;*</td></tr>\n";
-
-echo "            </table>\n";
-echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "            </table>\n";
-echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td width=30><input type='submit' name='submit' value='aplicar cambios' src='images/buttons/done_button.png'></td>
-                  <td><a href='$current_page'><img src='images/buttons/cancel_button.png' border='0'></td></tr></table></form></td></tr>\n";
-echo "</table>";
-
-include ('footer.php');
-exit;
-}
-
-// delete a categorias
-if($_POST['submit']=='borrar categoria'){
-	/*
-	$sql = "DELETE FROM categorias WHERE id='".$_POST['id']."'";
+	$sql = "INSERT INTO revista (nombre) VALUES ('".$_POST['nombre']."')";
 	$result = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>La Categoria se borro con exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La Revista se agrego con exito !!!</td></tr>\n";
 		echo "            </table>\n";
-	*/
+	
 }
-// fin delete a categorias
+// fin insert a revista
+
+// actualizar revista
+if($_POST['submit']=='actualizar revista'){
+	
+	if(!isset($_POST['nombre']) || !isset($_POST['id'])){
+		
+		echo "<BR>";
+		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>ERROR: Datos de la revista incorrectos</td></tr>\n";
+		echo "            </table>\n";
+		
+	}else {
+	
+		$sql = "UPDATE revista SET nombre='".$_POST['nombre']."' WHERE id=".$_POST['id']."";
+		$res = mysql_query($sql);
+		echo "<BR>";
+		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La revista se actualizo con exito !!!</td></tr>\n";
+		echo "            </table>\n";
+	}
+	
+}
+// fin actualizar revista
+
+// editar revista
+if($_POST['submit']=='editar revista'){
+
+	$sql = "SELECT * FROM revista WHERE id=".$_POST['id']."";
+	$res = mysql_query($sql);
+	$info = mysql_fetch_array($res);
+	
 echo "            <br />\n";
 echo "            <form name='libro' action='$current_page' method='post'>\n";
-echo "<table align=center class=table_border><form method='post' action'addcategoria.php'>";
-$sql = "SELECT * FROM categorias";
-$result = mysql_query($sql);
-echo '<tr><td><STRONG>VERIFICADOR</STRONG></td><td><select id="categoria" acdropdown=true style="width:300px;" autocomplete_complete="false" autocomplete_onselect="alertSelected" name="id">';
-while($catego = mysql_fetch_array($result)){
-	echo "<option value='".$catego['id']."'>".$catego['nombre']."</option>\n";
-}
-echo "</select><input type=submit name=submit value='editar'></td></tr></form></table><br><br>";
-//<td><input type='submit' name='submit' src='images/icons/delete.png' value='borrar categoria'></td>
-// agregar categoria
+echo "<INPUT TYPE=hidden name='id' value='".$info['id']."'>";
 echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
-                      <img src='images/icons/user_suit.png' />&nbsp;&nbsp;&nbsp;Agregar Categoria</th></tr>\n";
+                      <img src='images/icons/user_suit.png' />&nbsp;&nbsp;&nbsp;Editar Revista</th></tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre:</td><td colspan=2 width=80%
                       style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
-                      size='30' maxlength='31' name='nombre'>&nbsp;*</td></tr>\n";
+                      size='70' maxlength='290' name='nombre' value='".$info['nombre']."'>&nbsp;*</td></tr>\n";
 
 echo "            </table>\n";
 echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "            </table>\n";
 echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td width=30><input type='submit' name='submit' value='agregar categoria' src='images/buttons/done_button.png'></td>
+echo "              <tr><td width=30><input type='submit' name='submit' value='actualizar revista' src='images/buttons/done_button.png'></td>
                   <td><a href='index.php'><img src='images/buttons/cancel_button.png' border='0'></td></tr></table></form></td></tr>\n";
 echo "</table></form>";
-// fin agregar pais
+include ('footer.php');
+exit;
+	
+}
+// fin editar revista
+echo "            <br />\n";
+echo "            <form name='libro' action='$current_page' method='post'>\n";
+echo "<table align=center class=table_border><form method='post' action'addeditorial.php'>";
+$sql = "SELECT * FROM revista";
+$result = mysql_query($sql);
+echo '<tr><td><STRONG>VERIFICADOR</STRONG></td><td><select id="revista" acdropdown=true style="width:300px;" autocomplete_complete="false" autocomplete_onselect="alertSelected" name="id">';
+while($ciudad = mysql_fetch_array($result)){
+	echo "<option value='".$ciudad['id']."'>".$ciudad['nombre']."</option>\n";
+}
+echo "</select></td><td><input type='submit' name='submit' src='images/icons/delete.png' value='editar revista'></td></tr></form></table><br><br>";
 
+// agregar revista
+echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
+echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
+                      <img src='images/icons/user_suit.png' />&nbsp;&nbsp;&nbsp;Agregar Revista</th></tr>\n";
+echo "              <tr><td height=15></td></tr>\n";
 
-// mostrar categorias
-$sql = "SELECT * FROM categorias";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre:</td><td colspan=2 width=80%
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
+                      size='70' maxlength='290' name='nombre'>&nbsp;*</td></tr>\n";
+
+echo "            </table>\n";
+echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
+echo "              <tr><td height=15></td></tr>\n";
+echo "            </table>\n";
+echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
+echo "              <tr><td width=30><input type='submit' name='submit' value='agregar revista' src='images/buttons/done_button.png'></td>
+                  <td><a href='index.php'><img src='images/buttons/cancel_button.png' border='0'></td></tr></table></form></td></tr>\n";
+echo "</table></form>";
+// fin agregar revista
+
+// mostrar revistas
+$sql = "SELECT * FROM revista";
 $result = mysql_query($sql);
 echo "            <br />\n";
 echo "            <table align=center class=table_border width=20% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
-                      <img src='images/icons/group_add.png' />&nbsp;&nbsp;&nbsp;Listado Categorias</th></tr>\n";
+                      <img src='images/icons/group_add.png' />&nbsp;&nbsp;&nbsp;Listado Revistas</th></tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 
-while ($catego = mysql_fetch_array($result)){
+while ($editorial = mysql_fetch_array($result)){
 	echo "            <form action='$current_page' method='post'>\n";
-	echo "              <tr><td class=table_rows height=25 width=70% style='padding-left:32px;' nowrap>".$catego['nombre']."&nbsp;</td><td>";
-	echo "				<input type='hidden' name='id' value='".$catego['id']."'>
-						";
-	//<input type='submit' name='submit' src='images/icons/delete.png' value='borrar categoria'>
+	echo "              <tr><td class=table_rows height=25 width=70% style='padding-left:32px;' nowrap>".$editorial['nombre']."&nbsp;</td><td>";
+	echo "				<input type='hidden' name='id' value='".$editorial['id']."'>
+						<input type='submit' name='submit' src='images/icons/delete.png' value='editar revista'>";
 	echo "              </td></tr></form>\n";
 	
 }
-
 echo "            </table>\n";
 echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "            </table>\n";
-// fin mostrar categorias
-
+// fin mostrar revistas
 
 include ('footer.php');
 ?>

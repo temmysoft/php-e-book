@@ -22,7 +22,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+is_online();
 // borrar de mi librero
 if(isset($_GET['remlibro']) && !empty($_GET['remlibro'])){
 	$sql = "DELETE FROM libreros WHERE user= '".$_SESSION['lector_user']."' AND id_libro=".$_GET['remlibro']."";
@@ -42,7 +42,7 @@ if(isset($_GET['librero']) && !empty($_GET['librero'])){
 		
 				echo "<BR>";
 				echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-				echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>Lo Sentimos Usted Tiene Lleno Mi Librero</td></tr>\n";
+				echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>Lo Sentimos Usted Tiene Lleno Mi Librero</td></tr>\n";
 				echo "            </table>\n";
 				$error = 1;
 		
@@ -53,7 +53,7 @@ if(isset($_GET['librero']) && !empty($_GET['librero'])){
 		
 				echo "<BR>";
 				echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-				echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>Lo Sentimos Usted Ya Tiene El Libro en Mi Librero</td></tr>\n";
+				echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>Lo Sentimos Usted Ya Tiene El Libro en Mi Librero</td></tr>\n";
 				echo "            </table>\n";
 				$error = 1;
 		
@@ -65,7 +65,7 @@ if(isset($_GET['librero']) && !empty($_GET['librero'])){
 		$res = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>EL Libro Se Ha Agregado a Mi Librero</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>EL Libro Se Ha Agregado a Mi Librero</td></tr>\n";
 		echo "            </table>\n";
 		
 		
@@ -93,7 +93,7 @@ if(mysql_num_rows($res)>=1){
 	while ($librero = mysql_fetch_array($res)){
 	
 		//echo "<A HREF='milibrero.php?remlibro=".$librero['id_libro']."'><IMG SRC='images/icons/delete.png'></A><BR>";
-		echo "<TD><A HREF='viewer/upload.php?&id=".$librero['id_libro']."'><IMG SRC='".$lomos_view_dir.$librero['id_libro'].".jpg"."' ALT='".$librero['titulo']."' WIDTH=65 HEIGHT=400 BORDER=0></A></TD>\n";
+		echo "<TD><A HREF='viewer/upload.php?&id=".$librero['id_libro']."'><IMG SRC='".$lomos_view_dir.$librero['id_libro'].".jpg"."' ALT='".$librero['titulo']."' BORDER=0 WIDTH=85 HEIGHT=800></A></TD>\n"; //WIDTH=65 HEIGHT=400 
 	
 	}
 	echo "</TR></TABLE>";
@@ -101,7 +101,7 @@ if(mysql_num_rows($res)>=1){
 	
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>Aun No Tienes Ningun Libro</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>Aun No Tienes Ningun Libro</td></tr>\n";
 		echo "            </table>\n";
 	
 }

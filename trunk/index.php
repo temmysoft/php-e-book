@@ -26,7 +26,7 @@ echo "<P ALIGN=right><FONT color='#a595b9' size='1px'>Para visualizar esta pági
 exit;
 
 }
-
+is_online();
 // PAGINA DEL CAPTURISTA
 if (isset($_SESSION['captur_user'])){
 	
@@ -138,7 +138,7 @@ echo "    <td class=right_main width=20% align=left scope=col>\n";
     echo "<br>";
    echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
    echo "              <tr>
-   <td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'>
+   <td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'>
    <INPUT TYPE=SUBMIT NAME=buscar VALUE='Buscar'></td></tr>\n";
    echo "            </table>\n";
 // fin derecha
