@@ -81,7 +81,8 @@ $numrows = $row['numrows'];
 		$row_color = ($row_count % 2) ? $color1 : $color2;
 		 echo "<tr>";
 		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'>".$libro["id"]."</td>\n";
-		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'>".$libro["titulo"]."</td>\n";
+		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'>
+		 <TEXTAREA cols=40 readonly>".$libro["titulo"]."</TEXTAREA></td>\n";
 		 // autores
 		 $sql = "SELECT personas.nombres, personas.apellido_pat, personas.apellido_mat, categorias.nombre AS catego 
 			FROM personas, categorias, libros_personas WHERE

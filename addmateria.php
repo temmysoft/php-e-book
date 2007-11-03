@@ -22,24 +22,38 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
+is_online();
 // insert a pal_clave
 if($_POST['submit']=='agregar palclave'){
+	
+	// verificar no exista pal clave
+	$pal = strtoupper($_POST['nombre']);
+	$sql = "SELECT id FROM pal_clave WHERE upper(nombre) = '".$pal."'";
+	$res = mysql_query($sql);
+	if(mysql_num_rows($res)>0){
+		echo "<BR>";
+		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>ERROR: La palabra clave ya existe !!!</td></tr>\n";
+		echo "            </table>\n";
+	}else {
 	
 	$sql = "INSERT INTO pal_clave (id_materia,nombre) VALUES ('".$_POST['id_materia']."', '".$_POST['nombre']."')";
 	$result = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>La palabra clave se agrego con exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La palabra clave se agrego con exito !!!</td></tr>\n";
 		echo "            </table>\n";
-		$_POST['id']=$_POST['id_materia'];
-		$_POST['submit']='editar materia';
+		
+	}
+	$_POST['id']=$_POST['id_materia'];
+	$_POST['submit']='editar materia';
 	
 }
 // fin insert a pal_clave
 
 // delete a pal_clave
 if($_POST['submit']=='borrar palclave'){
-	
+	/*
 	$sql = "SELECT id_materia FROM pal_clave WHERE id='".$_POST['id']."'";
 	$result = mysql_query($sql);
 	$id_materia = mysql_fetch_array($result);
@@ -48,10 +62,11 @@ if($_POST['submit']=='borrar palclave'){
 	$result = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>La palabra clave se borro con exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>La palabra clave se borro con exito !!!</td></tr>\n";
 		echo "            </table>\n";
 		$_POST['id']=$idmat;
 		$_POST['submit']='editar materia';
+		*/
 	
 }
 // fin delete a pal_clave
@@ -66,7 +81,7 @@ if($_POST['submit']=='editar materia'){
 		
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'>".$materia['nombre']."</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'>".$materia['nombre']."</td></tr>\n";
 		echo "            </table>\n";
 		
 	// agregar palabra clave
@@ -78,7 +93,7 @@ if($_POST['submit']=='editar materia'){
 	echo "              <tr><td height=15></td></tr>\n";
 	
 	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Palabra:</td><td colspan=2 width=80%
-	                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+	                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
     	                  size='45' maxlength='49' name='nombre'>&nbsp;*</td></tr>\n";
 	
 	echo "				<input type='hidden' name='id_materia' value ='".$id."'>";
@@ -94,7 +109,7 @@ if($_POST['submit']=='editar materia'){
 	// fin agregar palabra clave
 	
 	// mostrar palabras clave
-	$sql = "SELECT * FROM pal_clave WHERE id_materia ='".$id."'";
+	$sql = "SELECT * FROM pal_clave WHERE id_materia ='".$id."' ORDER BY nombre";
 	$result = mysql_query($sql);
 	echo "            <br />\n";
 	echo "            <form name='libro' action='$current_page' method='post'>\n";
@@ -107,7 +122,8 @@ if($_POST['submit']=='editar materia'){
 	echo "            <form action='$current_page' method='post'>\n";
 	echo "              <tr><td class=table_rows height=25 width=70% style='padding-left:32px;' nowrap>".$palclave['nombre']."&nbsp;</td><td>";
 	echo "				<input type='hidden' name='id' value='".$palclave['id']."'>
-						<input type='submit' name='submit' src='images/icons/delete.png' value='borrar palclave'>";
+						<input type='submit' name='submit' value='editar palclave'>";
+	//<input type='submit' name='submit' src='images/icons/delete.png' value='borrar palclave'>
 	echo "              </td></tr></form>\n";
 	
 }
@@ -127,19 +143,31 @@ if($_POST['submit']=='editar materia'){
 // insert a materias
 if($_POST['submit']=='agregar materia'){
 	
+	// verificar no exista pal clave
+	$pal = strtoupper($_POST['nombre']);
+	$sql = "SELECT id FROM materias WHERE upper(nombre) = '".$pal."'";
+	$res = mysql_query($sql);
+	if(mysql_num_rows($res)>0){
+		echo "<BR>";
+		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>ERROR: La materia ya existe !!!</td></tr>\n";
+		echo "            </table>\n";
+	}else {
+	
 	$sql = "INSERT INTO materias (nombre) VALUES ('".$_POST['nombre']."')";
 	$result = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>La materia se agrego con exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La materia se agrego con exito !!!</td></tr>\n";
 		echo "            </table>\n";
+	}
 	
 }
 // fin insert a materias
 
 // delete a materias
 if($_POST['submit']=='borrar materia'){
-	
+	/*
 	$sql = "DELETE FROM materias WHERE id='".$_POST['id']."'";
 	$result = mysql_query($sql);
 	$sql = "DELETE FROM libros_palclave WHERE id_palclave IN (SELECT id FROM pal_clave WHERE id_materia='".$_POST['id']."')";
@@ -148,22 +176,71 @@ if($_POST['submit']=='borrar materia'){
 	$result = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>La materia se borro con exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>La materia se borro con exito !!!</td></tr>\n";
 		echo "            </table>\n";
-	
+	*/
 }
 // fin delete a materias
 
+// editar pal clave
+
+if($_POST['submit']=='editar palclave'){
+	
+	$palclave = $_POST['id'];
+	$sql = "SELECT * FROM pal_clave WHERE id=".$palclave."";
+	$res = mysql_query($sql);
+	$palabra = mysql_fetch_array($res);
+	echo "            <br />\n";
+echo "            <table align=center class=table_border width=20% border=0 cellpadding=3 cellspacing=0>\n";
+echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
+                      <img src='images/icons/group.png' />&nbsp;&nbsp;&nbsp;Editar Palabra Clave</th></tr>\n";
+echo "              <tr><td height=15></td></tr>\n";
+echo "            <form action='$current_page' method='post'>\n";
+echo "<TR><TD>Palabra Clave: </TD><TD><INPUT TYPE=TEXT NAME=pal_nombre SIZE=30 MAXLENGTH=50 VALUE='".$palabra['nombre']."'></TD></TR>
+<INPUT TYPE=hidden NAME=idpalclave VALUE=".$palabra['id'].">
+<INPUT TYPE=hidden NAME=idmateria VALUE=".$palabra['id_materia'].">
+<TR><TD><INPUT TYPE=SUBMIT VALUE='editar2 palclave' NAME='submit'></TD></TR>
+</TABLE></FORM>";
+echo "<BR>";
+	
+include ('footer.php');
+}
+
+if($_POST['submit']=='editar2 palclave'){
+	// hacer el update
+	
+	$sql = "SELECT id FROM pal_clave WHERE id_materia = '".$_POST['idmateria']."' AND nombre ='".$_POST['pal_nombre']."'";
+	$res = mysql_query($sql);
+	if(mysql_num_rows($res)>0){
+		// error ya existe la palabra clave
+		echo "<BR>";
+		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>La palabra clave ya existe en la materia</td></tr>\n";
+		echo "            </table>\n";
+	}else {
+		// moificar la palabra clave
+		$sql = "UPDATE pal_clave SET nombre = '".$_POST['pal_nombre']."' WHERE id_materia = ".$_POST['idmateria']."
+				AND id = ".$_POST['idpalclave']."";
+		mysql_query($sql);
+		echo "<BR>";
+		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La palabra clave se edito con exito !!!</td></tr>\n";
+		echo "            </table>\n";
+	}
+}
+
+// fin editar pal clave
+
 // delete a pal_clave
 if($_POST['submit']=='borrar palclave'){
-	
+	/*
 	$sql = "DELETE FROM pal_clave WHERE id='".$_POST['id']."'";
 	$result = mysql_query($sql);
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>La palabra clave se borro con exito !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>La palabra clave se borro con exito !!!</td></tr>\n";
 		echo "            </table>\n";
-	
+	*/
 }
 // fin delete a pal_clave
 
@@ -171,7 +248,7 @@ echo "            <br />\n";
 echo "            <form name='libro' action='$current_page' method='post'>\n";
 
 echo "<table align=center class=table_border><form method='post' action'addciudad.php'>";
-$sql = "SELECT * FROM materias";
+$sql = "SELECT * FROM materias ORDER BY nombre";
 $result = mysql_query($sql);
 echo '<tr><td><STRONG>VERIFICADOR</STRONG></td><td><select id="materias" acdropdown=true style="width:300px;" autocomplete_complete="false" autocomplete_onselect="alertSelected" name="id">';
 while($materia = mysql_fetch_array($result)){
@@ -187,7 +264,7 @@ echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3
 echo "              <tr><td height=15></td></tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' 
+                      style='color:red;font-family:Arial;font-size:10px;padding-left:20px;'><input type='text' 
                       size='30' maxlength='31' name='nombre'>&nbsp;*</td></tr>\n";
 
 echo "            </table>\n";
@@ -201,7 +278,7 @@ echo "</table></form>";
 // fin agregar materia
 
 // mostrar materias
-$sql = "SELECT * FROM materias";
+$sql = "SELECT * FROM materias ORDER BY nombre";
 $result = mysql_query($sql);
 echo "            <br />\n";
 echo "            <table align=center class=table_border width=20% border=0 cellpadding=3 cellspacing=0>\n";

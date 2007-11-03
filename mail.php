@@ -42,11 +42,11 @@ $cabeceras = 'From: biblioteca@focim.com' . "\r\n" .
 
 if(mail($para, $asunto, $mensaje, $cabeceras)){
 	echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-	echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>Se enviaron los libros al mail: $para</td></tr>\n";
+	echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>Se enviaron los libros al mail: $para</td></tr>\n";
 	echo "            </table>\n";
 }else {
 	echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-	echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>ERROR: Imposible enviar libros al mail: $para</td></tr>\n";
+	echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>ERROR: Imposible enviar libros al mail: $para</td></tr>\n";
 	echo "            </table>\n";
 }
 

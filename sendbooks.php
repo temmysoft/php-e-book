@@ -23,6 +23,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
+is_online();
 if (empty($_POST['Accion'])){
 	
 	//die ("File upload error. Please try again.");
@@ -39,9 +40,20 @@ if (empty($_POST['Accion'])){
 	echo "ID Libro: <INPUT TYPE='text' NAME='idlibro'><BR>";
 	echo "<INPUT TYPE='submit' NAME='Accion' Value='Despublicar'>";
 	echo "</FORM>";
+// listado de publicados
+	echo "<HR><CENTER>Libros Publicados</CENTER>";
+	$dir = $libros_dir;
+$dh  = opendir($dir);
+while (false !== ($filename = readdir($dh))) {
+    $files[] = $filename;
+}
 
-	
-	
+sort($files);
+foreach($files as $file){
+	if($file!='.' && $file!='..')echo $file.", ";
+}
+
+
 }else if($_POST['Accion']=='Publicar'){
 	$i=1;
 	//if(!is_dir($_POST['bookdir'])){
@@ -128,8 +140,11 @@ if (empty($_POST['Accion'])){
 	exec("rm ".$completo_dir.$idlibro.".pdf");
 	echo "PDF Borrado<br>";
 	echo "Libro ".$idlibro." Despublicado";
+	exec("rm /tmp/*");
+	echo "<br>Archivos Temporales Borrados";
 	
 }
 
 include ('footer.php');
+
 ?>

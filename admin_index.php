@@ -18,7 +18,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+//is_online();
 // principal capturista
 	echo "<BR>";
 	$row_count = 0;
@@ -38,8 +38,8 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 	echo "                <td nowrap width=20% align=left style='font-size:11px;padding-left:10px;padding-right:10px;'>
                           Materias</td>\n";
 	
-	echo "                <td nowrap width=20% align=left style='font-size:11px;padding-left:10px;padding-right:10px;'>
-                          Personas</td>\n";
+	//echo "                <td nowrap width=20% align=left style='font-size:11px;padding-left:10px;padding-right:10px;'>
+      //                    Personas</td>\n";
 	
 	echo "                <td nowrap width=20% align=left style='font-size:11px;padding-left:10px;padding-right:10px;'>
                           Ficha Completa</td>\n";
@@ -58,7 +58,7 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 	}
 	// counting the offset
 	$offset = ($pageNum - 1) * $rowsPerPage;
-	$SQL = "SELECT id, titulo FROM libros ORDER BY id DESC LIMIT ".$offset.", ".$rowsPerPage."";
+	$SQL = "SELECT id, titulo, tipo FROM libros ORDER BY id DESC LIMIT ".$offset.", ".$rowsPerPage."";
 	$result = mysql_query($SQL);
 	
 	// how many rows we have in database
@@ -91,7 +91,8 @@ $numrows = $row['numrows'];
 		$row_color = ($row_count % 2) ? $color1 : $color2;
 		 echo "<tr>";
 		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'>".$libro["id"]."</td>\n";
-		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'>".$libro["titulo"]."</td>\n";
+		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'><TEXTAREA cols=50 readonly>".$libro["titulo"]."</TEXTAREA></td>\n";
+		 
 		 // autores
 		 $sql = "SELECT personas.nombres, personas.apellido_pat, personas.apellido_mat, categorias.nombre AS catego 
 			FROM personas, categorias, libros_personas WHERE
@@ -123,6 +124,7 @@ $numrows = $row['numrows'];
 		}
 		echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'>".$Materias."</td>\n";
 		 // fin materias
+		 /*
 		 // demas personas
 		 $sql = "SELECT personas.nombres, personas.apellido_pat, personas.apellido_mat, categorias.nombre AS catego 
 			FROM personas, categorias, libros_personas WHERE
@@ -138,12 +140,19 @@ $numrows = $row['numrows'];
 		}
 		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'>".$Personas."</td>\n";
 		 // fin demas personas
+		 */
 		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'><a href='ficha.php?id=".$libro['id']."'>Ficha Completa</a></td>\n";
-		 echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'><a href='editar.php?id=".$libro['id']."'>Editar Libro</a></td>\n";
+		 if($libro['tipo']==L){
+			echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'><a href='editar.php?id=".$libro['id']."'>Editar Libro</a></td>\n";		 	
+		 }else {
+		 	echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'><a href='editar.php?id=".$libro['id']."'>Editar Articulo</a></td>\n";
+		 }
+		 
 		 //echo "                <td nowrap align=left width=20% bgcolor='$row_color' style='color:black;padding-left:10px;padding-right:10px;'><a href='borralibro.php?borrar=".$libro['id']."'>Eliminar Libro</a></td>\n";
 		 // add 1 to te row count
 		$row_count++;
 	}
+	
 	echo "</table>";
 // fin principal del administrador
 include ('footer.php');

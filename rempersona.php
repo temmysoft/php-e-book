@@ -20,7 +20,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+is_online();
 // se envio un libro a borrar
 if(isset($_GET['id']) && isset($_GET['per'])){
 	
@@ -28,7 +28,7 @@ if(isset($_GET['id']) && isset($_GET['per'])){
 	mysql_query($sql);
 	echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>La persona se borro del libro !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Arial;font-size:12px;'>La persona se borro del libro !!!</td></tr>\n";
 		echo "            </table>\n";
 		exit;
 	
@@ -36,7 +36,7 @@ if(isset($_GET['id']) && isset($_GET['per'])){
 	
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>No se envio ninguna persona a borrar !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>No se envio ninguna persona a borrar !!!</td></tr>\n";
 		echo "            </table>\n";
 		exit;
 	

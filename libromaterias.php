@@ -22,7 +22,7 @@ echo "        <tr class=right_main_text><td align=center>No estas registado<br>o
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='login.php'><u>aqui</u></a> para logearse.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+is_online();
 if(isset($_GET['id'])){
 	$libroid = $_GET['id'];
 }else {
@@ -55,8 +55,8 @@ if(isset($_POST['submit']) && $_POST['idlibro'] && $_POST['submit']=='agregar pa
 		mysql_query($sql);
 	
 		echo "<BR>";
-		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>Se agrego la Materia !!!</td></tr>\n";
+		echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+		echo "              <tr><td class=table_rows align=center colspan=5 style='color:green;font-family:Arial;font-size:12px;'>Se agrego la Materia !!!</td></tr>\n";
 		echo "            </table>\n";
 	}
 		$Lista=array_keys($_POST['palabras']);
@@ -66,11 +66,11 @@ if(isset($_POST['submit']) && $_POST['idlibro'] && $_POST['submit']=='agregar pa
     	}
 	}	
 	echo "<BR>";
-		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:green;font-family:Tahoma;font-size:12px;'>Se agregaron las Palabras !!!</td></tr>\n";
+		echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+		echo "              <tr><td class=table_rows align=center colspan=5 style='color:green;font-family:Arial;font-size:12px;'>Se agregaron las Palabras !!!</td></tr>\n";
 		echo "            </table>\n";
 		
-		echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
+		echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td>";
 				
 echo "</table>";
@@ -107,9 +107,9 @@ $sql = "SELECT libros.titulo, libros.edicion, editoriales.nombre FROM libros, ed
 	
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=50% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'>".$libro['titulo']." - ".$libro['edicion']." - ".$libro['nombre']."</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'>".$libro['titulo']." - ".$libro['edicion']." - ".$libro['nombre']."</td></tr>\n";
 		
-		echo "<tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Tahoma;font-size:12px;'>".$Materias."</td></tr>";
+		echo "<tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'>".$Materias."</td></tr>";
 		
 		echo "            </table>\n";
 */
@@ -117,12 +117,12 @@ $sql = "SELECT libros.titulo, libros.edicion, editoriales.nombre FROM libros, ed
 echo "            <br />\n";
 echo "            <form name='libro' action='$current_page' method='post'>\n";
 echo "			<input type='hidden' name='idlibro' value='".$libroid."'>";
-echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
+echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+echo "              <tr><th class=rightside_heading nowrap halign=left colspan=5>
                       <img src='images/icons/group_add.png' />&nbsp;&nbsp;&nbsp;Agregar Materia</th></tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 
-$sql = "SELECT * FROM materias";
+$sql = "SELECT * FROM materias ORDER BY nombre";
 $result = mysql_query($sql);
 $i = 0;
 /*
@@ -135,18 +135,18 @@ echo "</select></td><td><input type='image' name='submit' src='images/icons/dele
 echo "<tr align=center>";
 while ($materia = mysql_fetch_array($result)){
 	
-	if($i==3){
+	if($i==5){
 		echo "</tr><tr align=center>";
 		$i = 0;
 	}
-	echo "<td style='font-family:Tahoma;font-size:13px;'>".$materia['nombre']."&nbsp;<input type='submit' src='images/icons/arrow_right.png' name='materia' value='".$materia['id']."'></td>";
+	echo "<td style='font-family:Arial;font-size:13px;'>".$materia['nombre']."&nbsp;<input type='submit' src='images/icons/arrow_right.png' name='materia' value='".$materia['id']."'></td>";
 	$i++;
 	
 }
 echo "</tr>";
 
 echo "            </table>\n";
-echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
+echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "            </table>\n";
 // fin mostrar materias
@@ -156,7 +156,7 @@ if(isset($_POST['materia']) && isset($_POST['idlibro'])){
 	$materiaid = $_POST['materia'];
 	$libroid = $_POST['idlibro'];
 	
-	$sql = "SELECT * FROM pal_clave WHERE id_materia = '".$materiaid."'";
+	$sql = "SELECT * FROM pal_clave WHERE id_materia = '".$materiaid."' ORDER BY nombre";
 	$res = mysql_query($sql);
 	
 // mostrar pal claves
@@ -164,8 +164,8 @@ echo "            <br />\n";
 echo "            <form name='pal_claves' action='$current_page' method='post'>\n";
 echo "				<input type='hidden' name='idlibro' value='".$libroid."'>";
 echo "				<input type='hidden' name='materia' value='".$materiaid."'>";
-echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
+echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+echo "              <tr><th class=rightside_heading nowrap halign=left colspan=5>
                       <img src='images/icons/group_add.png' />&nbsp;&nbsp;&nbsp;Agregar palabras Claves</th></tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 $j=0;
@@ -179,17 +179,17 @@ while ($palabra = mysql_fetch_array($res)){
 			$j=0;
 		}
 		if(mysql_num_rows($rs)<=0){
-			echo "              <td style='font-family:Tahoma;font-size:13px;'>
+			echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox' name='palabras[".$palabra['id']."]'>".$palabra['nombre']."</td>\n";
 		}else {
-			echo "              <td style='font-family:Tahoma;font-size:13px;'>
+			echo "              <td style='font-family:Arial;font-size:13px;'>
 				<input type='checkbox'name='palabras[".$palabra['id']."]' CHECKED>".$palabra['nombre']."</td>\n";
 		}
 		$j++;
 }
 
 echo "            </table>\n";
-echo "            <table align=center width=40% border=0 cellpadding=0 cellspacing=3>\n";
+echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td width=30><input type='submit' name='submit' value='agregar palclaves' src='images/buttons/next_button.png'></td>
                   <td><a href='libromaterias.php?id=".$libroid."'><img src='images/buttons/cancel_button.png' border='0'></td>
                   
@@ -208,7 +208,7 @@ echo "</table></form>";
 		/*
 		echo "<BR>";
 		echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
-		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>ERROR: Esta pagina debe ser mandada llamar !!!</td></tr>\n";
+		echo "              <tr><td class=table_rows align=center colspan=3 style='color:red;font-family:Arial;font-size:12px;'>ERROR: Esta pagina debe ser mandada llamar !!!</td></tr>\n";
 		echo "            </table>\n";
 		*/
 		include('footer.php');
