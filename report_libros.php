@@ -303,9 +303,9 @@ $pdf = new PDF('L','pt','A3');
 $pdf->SetFont('Arial','',11.5);
 $pdf->AliasNbPages();
 $pdf->connect('localhost','bestbiblioteca','sauldelafuente','bestbiblioteca');
-$attr=array('titleFontSize'=>14,'titleText'=>'Biblioteca FOCIM - Reporte Datos Basicos');
-$pdf->mysql_report("SELECT libros.titulo AS TITULO,
-			libros.id AS ID,
+$attr=array('titleFontSize'=>14,'titleText'=>'Biblioteca FOCIM - Reporte Libros, Datos Basicos');
+$pdf->mysql_report("SELECT libros.id AS ID,
+			libros.titulo AS TITULO,
 			libros.anyo AS ANYO,
 			libros.edicion AS EDICION,
 			libros.isbn AS ISBN,
@@ -319,5 +319,6 @@ $pdf->mysql_report("SELECT libros.titulo AS TITULO,
 				paises 
 			WHERE editoriales.id=libros.editorial
 			AND ciudades.id=libros.ciudad
+			AND libros.tipo = 'L'
 			AND paises.id=libros.pais ORDER BY libros.id",false,$attr);
 ?>

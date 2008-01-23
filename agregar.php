@@ -1,6 +1,7 @@
 <?php
 /*
-
+	ANDRES AMAYA DIAZ
+	AGREGAR O MODIFICAR UN LIBRO
 
 */
 session_start();
@@ -113,7 +114,7 @@ if(isset($_POST['submit']) && $_POST['submit']=='agregar libro'){
 		'".$id['id']."',
 		'".$_SESSION['captur_user']."')";
 		$captur = mysql_query($sql);
-		echo "<meta http-equiv='refresh' content='0;URL=libropersonas.php?id=".$id['id'].">\n";
+		echo "<meta http-equiv='refresh' content='0;URL=libropersonas.php?id=".$id['id']."'>\n";
 		echo "<br>Si no eres redireccionado<a href=libropersonas.php?id=".$id['id']."> haz click aqui</a>";
 		include ('footer.php');
 		exit;

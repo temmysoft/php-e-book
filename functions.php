@@ -428,7 +428,7 @@ function ficha_materias($id){
 	while($materias = mysql_fetch_array($resmaterias)){
 		
 		if(isset($_SESSION['admin_user'])){
-			echo $materias['nombre'].'&nbsp;&nbsp;<a href=remmateria.php?id='.$libro2['id'].'&mat='.$materias['id'].' onclick="return confirm(\'' . _('Estas Seguro?') . '\');">[eliminar]</a>, ';
+			echo $materias['nombre'].'&nbsp;&nbsp;<a href=remmateria.php?id='.$libro2['id'].'&mat='.$materias['id'].' onclick="return confirm(\'' . 'Estas Seguro?' . '\');">[eliminar]</a>, ';
 		}else {
 			
 		}

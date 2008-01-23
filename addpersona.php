@@ -1,6 +1,6 @@
 <?php
 /*
-
+esta es una prueba
 
 */
 session_start();

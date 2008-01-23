@@ -111,6 +111,7 @@ while($catego = mysql_fetch_array($result)){
 echo "</select><input type=submit name=submit value='editar'></td></tr></form></table><br><br>";
 //<td><input type='submit' name='submit' src='images/icons/delete.png' value='borrar categoria'></td>
 // agregar categoria
+echo "            <form name='categoria' action='$current_page' method='post'>\n";
 echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
                       <img src='images/icons/user_suit.png' />&nbsp;&nbsp;&nbsp;Agregar Categoria</th></tr>\n";

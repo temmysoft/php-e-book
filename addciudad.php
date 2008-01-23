@@ -1,7 +1,7 @@
 <?php
 /*
-
-
+	ANDRES AMAYA DIAZ
+AGREGAR O MODIFICAR UNA CIUDAD
 */
 session_start();
 
@@ -121,6 +121,7 @@ while($ciudad = mysql_fetch_array($result)){
 echo "</select><input type=submit name=submit value='editar'></td></tr></form></table><br><br>";
 //<td><input type='submit' name='submit' src='images/icons/delete.png' value='borrar ciudad'></td>
 // agregar ciudad
+echo "            <form name='user' action='$current_page' method='post'>\n";
 echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
                       <img src='images/icons/group_add.png' />&nbsp;&nbsp;&nbsp;Agregar Ciudad</th></tr>\n";

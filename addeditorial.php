@@ -1,6 +1,7 @@
 <?php
 /*
-
+	ANDRES AMAYA DIAZ
+	AGREGAR O MODIFICAR EDITORIALES
 
 */
 session_start();
@@ -103,6 +104,7 @@ while($ciudad = mysql_fetch_array($result)){
 echo "</select></td><td><input type='submit' name='submit' src='images/icons/delete.png' value='editar editorial'></td></tr></form></table><br><br>";
 
 // agregar editorial
+echo "            <form name='editorial' action='$current_page' method='post'>\n";
 echo "            <table align=center class=table_border width=40% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
                       <img src='images/icons/user_suit.png' />&nbsp;&nbsp;&nbsp;Agregar Editorial</th></tr>\n";
