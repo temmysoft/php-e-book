@@ -7,13 +7,13 @@ andres amaya diaz
 
 */
 include ('config.inc.php');
-$title = "Biblioteca Focim";
+$title = "Biblioteca";
 
 ?>
 <HTML>
 
 	<HEAD>
-	
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /> 
 	</HEAD>
 	
 	<BODY>
@@ -97,7 +97,8 @@ function is_online(){
 // Check if visitor is already in the table
 $ipaddress = $_SERVER['REMOTE_ADDR'];
 $lastactive = time();
-mysql_query ("DELETE FROM online WHERE lastactive < ".$inactive."");
+$inactive = time()-(60*TIMEOUT);
+mysql_query("DELETE * FROM online WHERE lastactive <".$inactive."");
 $intable = mysql_query ("SELECT onlineid FROM online WHERE onlineid = '".$_SESSION['userid']."'");
 
 if (mysql_num_rows($intable)<=0) {
@@ -144,8 +145,8 @@ if (mysql_num_rows($intable)<=0) {
 
 // Remove any inactive visitors
 $inactive = time()-(60*TIMEOUT);
+mysql_query ("DELETE FROM online WHERE lastactive < ".$inactive."");
 //echo "DELETE FROM online WHERE lastactive < ".$inactive."<BR>";
-mysql_query("DELETE FROM online WHERE lastactive < ".$inactive."");
 }
 //is_online();
 //online();
@@ -258,6 +259,11 @@ echo "    <td align=right valign=middle width=10><a href='adduser.php' style='co
         Usuarios&nbsp;&nbsp;</a></td>\n";
 echo "<td align=right valign=middle width=10></td>";
 
+
+echo "    <td align=right valign=middle width=25><img src='images/icons/application.png' border='0'>&nbsp;&nbsp;</td>\n";
+echo "    <td align=right valign=middle width=10><a href='addescuela.php' style='color:#000000;font-family:Arial;font-size:10pt;text-decoration:none;'>
+        Escuelas&nbsp;&nbsp;</a></td>\n";
+echo "<td align=right valign=middle width=10></td>";
 
 echo "    <td align=right valign=middle width=25><img src='images/icons/bricks.png' border='0'>&nbsp;&nbsp;</td>\n";
 echo "    <td align=right valign=middle width=10><a href='addrevista.php' style='color:#000000;font-family:Arial;font-size:10pt;text-decoration:none;'>

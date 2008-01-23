@@ -7,9 +7,9 @@
               --- $db_name is the mysql database you created during the install. */
 
 $db_hostname = "localhost";
-$db_username = "biblioteca";
-$db_password = "bibliofocim34";
-$db_name = "biblioteca";
+$db_username = "bestbibl_bibliot";
+$db_password = "sauldelafuente";
+$db_name = "bestbibl_biblioteca";
 
 /* --- OPTIONAL CHANGES --- */
 
@@ -34,17 +34,17 @@ $pageNum = 1;
 $libreromax = 15;
 
 // Ubicacion de los libros final (jpg)
-$libros_dir = "/home/ftp2/libros/";
+$libros_dir = "/home/bestbibl/libros/";
 // ubicacion de los libros temporal (tiff)
-$libros_tmp = "/home/ftp2/librotiff/";
+$libros_tmp = "/home/bestbibl/public_html/librostiff/";
 // nombre del archivo con el lomo del libro
 $lomo = "LOMO";
 // ubicacion de los lomos
-$lomos_dir = "/var/www/biblioteca/lomos/";
+$lomos_dir = "/home/bestbibl/public_html/biblioteca/lomos/";
 $lomos_view_dir = "lomos/";
 
 // ubicacion de completos.pdf
-$completo_dir = "/var/www/biblioteca/PDF/";
+$completo_dir = "/home/bestbibl/public_html/biblioteca/PDF/";
 
 // conexion con la base de datos
 $db = mysql_pconnect($db_hostname, $db_username, $db_password);

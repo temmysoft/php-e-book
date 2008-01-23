@@ -17,6 +17,15 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 if (!isset($_GET['id']))
 	die ('no se envio libro');
 
+// verificar que se tiene acceso al libro
+if(!isset($_SESSION['admin_user'])){
+	$sql = "SELECT id_libro FROM libros_escuelas WHERE id_libro= '".$_GET['id']."' AND id_escuela = '".$_SESSION['escuela']."'";
+	$res = mysql_query($sql);
+
+	if(mysql_num_rows($res)<=0){
+		die("ERROR: Imposible acceder al libro, verifique que tiene acceso a este recurso. ");
+	}
+}
 $_SESSION['id'] = $_GET['id'];
 $pages = 0;
 $_SESSION['pfiles'] = array();

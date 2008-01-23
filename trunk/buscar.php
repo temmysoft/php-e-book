@@ -122,6 +122,11 @@ if(isset($_POST['submit']) && $_POST['submit']=='buscar'){
 				$sql .= " AND libros.tipo ='R'";
 			}
 	
+			// filtro de la escuela
+			if(!isset($_SESSION['admin_user'])){
+				$sql .= " AND libros.id IN (SELECT id_libro FROM libros_escuelas WHERE id_escuela = '".$_SESSION['escuela']."')";
+			}
+			
 			if(isset($_POST['FromID']) && strlen($_POST['FromID'])>0){
 				$sql .= " AND libros.id >= ".$_POST['FromID']." 
 							AND libros.id <= ".$_POST['ToID']." 
@@ -190,7 +195,7 @@ if(isset($_POST['submit']) && $_POST['submit']=='buscar'){
 						if(isset($_SESSION['lector_user'])){
 							echo "<td width=30% class=table_rows align=left style='color:black;font-family:Arial;font-size:12px;'>";
 							echo "
-							<a href='viewer/upload.php?id=".$libro['id']."' target='new'>Ver libro</a><BR> 
+							<a href=javascript:; onClick=open('viewer/upload.php?id=".$libro['id']."','new','width=800,height=800')>Ver libro</a><BR> 
 							<a href='milibrero.php?librero=".$libro['id']."' target='new'>Agregar a Mi Librero</a><BR>
 							<a href='ficha.php?id=".$libro['id']."' target='new'>Ficha Completa</a><BR>
 							<INPUT TYPE=checkbox NAME='ids[]' VALUE='".$libro['id']."'>Enviar via Mail";

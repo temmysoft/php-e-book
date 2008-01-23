@@ -302,8 +302,8 @@ function mysql_report($query,$dump=false,$attr=array()){
 $pdf = new PDF('L','pt','A3');
 $pdf->SetFont('Arial','',11.5);
 $pdf->AliasNbPages();
-$pdf->connect('localhost','root','bluecode','biblioteca');
-$attr=array('titleFontSize'=>14,'titleText'=>'Biblioteca FOCIM - Reporte Apocrifos');
+$pdf->connect('localhost','bestbiblioteca','sauldelafuente','bestbiblioteca');
+$attr=array('titleFontSize'=>14,'titleText'=>'Biblioteca FOCIM - Reporte Datos Basicos');
 $pdf->mysql_report("SELECT users.nombre, users.user, dupusers.fecha, dupusers.ip1, dupusers.ip2
 					FROM users, dupusers WHERE users.id = dupusers.userid
 					GROUP BY dupusers.id ORDER BY dupusers.fecha",false,$attr);
