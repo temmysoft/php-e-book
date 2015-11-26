@@ -1,0 +1,3 @@
+Online Library in php/sql, based on scanned images of the books, it has 3 auth levels, admin, reader, captur. The admin has total control over the books and the library functionality, the reader can search books, save books in his private library to easily find them later, send search results via mial, etc....
+And the captur user will only be able to insert new books into the library.
+bowikaxu@gmail.com
